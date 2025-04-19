@@ -1,0 +1,260 @@
+<html lang="en" style="--bg-color: #000; --text-color: #ffc0cb; --accent-color: #ff69b4; --header-text-color: #000; --footer-bg: #111;">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhatBhejo - Send Letters, Not Just Texts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&amp;family=Open+Sans&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-color: #000;
+        --text-color: #ffc0cb;
+        --accent-color: #ff69b4;
+        --header-text-color: #000;
+        --footer-bg: #111;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: background-color 0.6s ease, color 0.6s ease;
+      }
+
+      header {
+        background-color: var(--accent-color);
+        color: var(--header-text-color);
+        padding: 1.5rem 2rem;
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        position: relative;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+        margin-top: 0.5rem;
+      }
+
+      .clock {
+        position: absolute;
+        top: 1rem;
+        right: 2rem;
+        font-size: 1rem;
+        background: var(--bg-color);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        color: var(--accent-color);
+        font-weight: bold;
+        font-family: monospace;
+      }
+
+      .hero {
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        font-family: 'Playfair Display', serif;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .cta-button {
+        display: inline-block;
+        margin-top: 2rem;
+        padding: 0.75rem 1.5rem;
+        background-color: var(--accent-color);
+        color: var(--header-text-color);
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+      }
+
+      .cta-button:hover {
+        background-color: #ff85c1;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem;
+        background-color: var(--footer-bg);
+        font-size: 0.9rem;
+        color: var(--text-color);
+      }
+
+      /* Center button styling */
+      .center-button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        display: none; /* Initially hide the button */
+      }
+
+      @media (max-width: 600px) {
+        .clock {
+          position: static;
+          display: block;
+          margin: 1rem auto 0;
+          text-align: center;
+          font-size: 0.9rem;
+          background: var(--bg-color);
+          padding: 0.4rem 1rem;
+          border-radius: 6px;
+        }
+
+        header h1 {
+          font-size: 1.8rem;
+        }
+        .hero h2 {
+          font-size: 1.5rem;
+        }
+        .cta-button {
+          font-size: 0.9rem;
+          padding: 0.6rem 1.2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>KhatBhejo</h1>
+      <div class="tagline">Be old school. Send letters.</div>
+      <div class="clock" id="clock">9:39:02 PM</div>
+    </header>
+
+    <section class="hero">
+      <h2>Because feelings deserve paper</h2>
+      <p>
+        In a world of instant messages and fleeting notifications, bring back the magic of heartfelt letters. 
+        Let your emotions be inked, not typed. At KhatBhejo, we help your words travel with soul.
+      </p>
+      <a class="cta-button" href="#">Start Writing</a>
+    </section>
+
+    <section id="writingSection" style="display: none; padding: 2rem; text-align: center;">
+      <h2>Write Your Letter</h2>
+      <textarea 
+        placeholder="Dear someone special..." 
+        rows="12" 
+        style="
+          width: 90%;
+          max-width: 650px;
+          padding: 1.5rem;
+          font-size: 1.05rem;
+          line-height: 1.6;
+          border-radius: 12px;
+          border: 1px dashed var(--accent-color);
+          color: var(--text-color);
+          background-color: var(--bg-color);
+          box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+          font-family: 'Playfair Display', serif;
+          resize: vertical;
+          transition: box-shadow 0.3s ease;
+        "
+        onfocus="this.style.boxShadow='0 0 14px rgba(255, 105, 180, 0.6)'"
+        onblur="this.style.boxShadow='0 0 10px rgba(255, 105, 180, 0.3)'"
+      ></textarea>
+    </section>
+
+    <br><br>
+
+    <div class="center-button-container">
+      <button id="sendBtn" style="
+        background-color: var(--accent-color);
+        border: none;
+        color: var(--header-text-color);
+        font-weight: bold;
+        padding: 0.7rem 1.4rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      ">Send Letter</button>
+    </div>
+
+    <footer>
+      © 2025 KhatBhejo.com | All rights reserved. Let your words travel.
+    </footer>
+
+    <script>
+      document.querySelector('.cta-button').addEventListener('click', function(e) {
+        e.preventDefault();
+        this.style.display = 'none'; // 👈 hide the button
+        document.getElementById('writingSection').style.display = 'block';
+        window.scrollTo({
+          top: document.getElementById('writingSection').offsetTop - 60,
+          behavior: 'smooth'
+        });
+        
+        // Show the Send Letter button after writing section appears
+        document.querySelector('.center-button-container').style.display = 'flex';
+      });
+
+      document.getElementById("sendBtn").addEventListener("click", function () {
+        alert("Your letter has been sent. ❤️");
+      });
+
+      function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        document.getElementById('clock').textContent = timeString;
+      }
+
+      function randomTheme() {
+        const themes = [
+          {
+            bg: '#000',
+            text: '#ffc0cb',
+            accent: '#ff69b4',
+            headerText: '#000',
+            footer: '#111'
+          },
+          {
+            bg: '#1e1e2f',
+            text: '#fddde6',
+            accent: '#ff7eb9',
+            headerText: '#fff',
+            footer: '#2d2d3a'
+          },
+          {
+            bg: '#fef6f9',
+            text: '#222',
+            accent: '#ff4081',
+            headerText: '#fff',
+            footer: '#ffe6ec'
+          },
+          {
+            bg: '#120d31',
+            text: '#ffb6c1',
+            accent: '#e75480',
+            headerText: '#ffffff',
+            footer: '#1e1035'
+          }
+        ];
+        const chosen = themes[Math.floor(Math.random() * themes.length)];
+        document.documentElement.style.setProperty('--bg-color', chosen.bg);
+        document.documentElement.style.setProperty('--text-color', chosen.text);
+        document.documentElement.style.setProperty('--accent-color', chosen.accent);
+        document.documentElement.style.setProperty('--header-text-color', chosen.headerText);
+        document.documentElement.style.setProperty('--footer-bg', chosen.footer);
+      }
+
+      setInterval(updateClock, 1000);
+      updateClock();
+      randomTheme();
+    </script>
+  </body>
+</html>
